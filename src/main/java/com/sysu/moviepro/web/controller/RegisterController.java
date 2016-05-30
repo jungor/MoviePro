@@ -3,11 +3,13 @@ package com.sysu.moviepro.web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,26 +27,25 @@ public class RegisterController {
 	
 	@RequestMapping(value="/register", method= RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> createUser(@ModelAttribute User user) {
+	public Map<String, Object> createUser(String name, String password, HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		
 		// 此处的user的合法性应该已经由前端保证,后台只负责验证重复性
-		boolean exist = isUserExist(user);
+		boolean exist = userService.isUserExist(name);
 		if (!exist) {
-			logger.info("Creating User. Data: "+user);
-			int id = userService.createUser(user);
+			User user = new User();
+			user.setName(name);
+			user.setPassword(password);
+			userService.createUser(user);
 			modelMap.put("code", 1);  // 1代表创建成功
+			modelMap.put("message", name);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("user", user);
 			return modelMap;
 		} else {
-			logger.info(""+user.getName()+" is already exist");
 			modelMap.put("code", 0);  // 0代表创建失败
+			modelMap.put("message", "用户名已存在");
 			return modelMap;
 		}
-	}
-	
-	private boolean isUserExist(User user) {
-		User result = userService.getUserByName(user.getName());
-		if (result.getId() == 0) return false;
-		else return true;
 	}
 }

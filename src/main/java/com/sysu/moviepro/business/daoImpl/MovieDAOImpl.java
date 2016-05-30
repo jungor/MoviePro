@@ -1,12 +1,12 @@
 package com.sysu.moviepro.business.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.sysu.moviepro.business.dao.MovieDAO;
 import com.sysu.moviepro.business.entity.Movie;
 
@@ -27,6 +27,7 @@ public class MovieDAOImpl implements MovieDAO {
 	public Movie updateMovie(Movie Movie) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(Movie);
+		sessionFactory.getCurrentSession().flush();
 		return Movie;
 	}
 
@@ -47,11 +48,16 @@ public class MovieDAOImpl implements MovieDAO {
 	
 	@Override
 	public Movie getMovieByName(String name) {
-		String hql = "select Movie.id from Movie movie where movie.name = '" + name + "'";
+		String hql = "select movie.id from Movie movie where movie.name = '" + name + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		Movie Movie = (Movie) sessionFactory.getCurrentSession().get(Movie.class, name);
-		return Movie;
+		List list = query.list();
+		assert(list.size() <= 1);
+		if (list.isEmpty())
+			return new Movie();
+		else {
+			int id = (Integer)list.get(0);
+			return getMovie(id);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -59,5 +65,16 @@ public class MovieDAOImpl implements MovieDAO {
 	public List<Movie> getAllMovies() {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery(" From Movie movie ").list();
+	}
+
+	@Override
+	public List<String> getAllMovieNames() {
+		// TODO Auto-generated method stub
+		List<Movie> movies = getAllMovies();
+		List<String> movieNames = new ArrayList<String>(); 
+		for (Movie movie: movies) {
+			movieNames.add(movie.getName());
+		}
+		return movieNames;
 	}
 }

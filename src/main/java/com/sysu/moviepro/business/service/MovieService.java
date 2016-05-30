@@ -11,4 +11,5 @@ public interface MovieService {
 	public Movie getMovie(int id);
 	public Movie getMovieByName(String name);
 	public List<Movie> getAllMovies(); 
+	public List<String> getAllMovieNames(); 
 }

@@ -1,8 +1,6 @@
 package com.sysu.moviepro.business.entity;
 
 
-import java.util.Calendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,30 +26,18 @@ public class Movie {
 	private String mainActor;
 	
 	@Column
-	private int type;
+	private String type;
 	
 	@Column
-	private Calendar duration;
+	private String duration;
 	
 	@Column
-	private Calendar releaseTime;
+	private String releaseTime;
 	
-	@Column
+	@Column(length=1000)
 	private String description;
 	
 	public Movie() {}
-
-	public Movie(String name, String director, String mainActor, int type, Calendar duration, Calendar releaseTime,
-			String description) {
-		super();
-		this.name = name;
-		this.director = director;
-		this.mainActor = mainActor;
-		this.type = type;
-		this.duration = duration;
-		this.releaseTime = releaseTime;
-		this.description = description;
-	}
 
 	public int getId() {
 		return id;
@@ -85,27 +71,27 @@ public class Movie {
 		this.mainActor = mainActor;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
-	public Calendar getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
-	public void setDuration(Calendar duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
-	public Calendar getReleaseTime() {
+	public String getReleaseTime() {
 		return releaseTime;
 	}
 
-	public void setReleaseTime(Calendar releaseTime) {
+	public void setReleaseTime(String releaseTime) {
 		this.releaseTime = releaseTime;
 	}
 
@@ -121,5 +107,66 @@ public class Movie {
 	public String toString() {
 		return "Movie [id=" + id + ", name=" + name + ", director=" + director + ", mainActor=" + mainActor + ", type="
 				+ type + ", duration=" + duration + ", releaseTime=" + releaseTime + ", description=" + description + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((director == null) ? 0 : director.hashCode());
+		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
+		result = prime * result + ((mainActor == null) ? 0 : mainActor.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((releaseTime == null) ? 0 : releaseTime.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Movie other = (Movie) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (director == null) {
+			if (other.director != null)
+				return false;
+		} else if (!director.equals(other.director))
+			return false;
+		if (duration == null) {
+			if (other.duration != null)
+				return false;
+		} else if (!duration.equals(other.duration))
+			return false;
+		if (mainActor == null) {
+			if (other.mainActor != null)
+				return false;
+		} else if (!mainActor.equals(other.mainActor))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (releaseTime == null) {
+			if (other.releaseTime != null)
+				return false;
+		} else if (!releaseTime.equals(other.releaseTime))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
 	}
 }

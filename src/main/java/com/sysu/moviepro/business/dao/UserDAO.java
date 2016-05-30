@@ -11,4 +11,6 @@ public interface UserDAO {
 	public User getUser(int id);
 	public User getUserByName(String name);
 	public List<User> getAllUsers();
+	
+	public boolean isUserExist(String name);
 }

@@ -27,6 +27,7 @@ public class UserDAOImpl implements UserDAO {
 	public User updateUser(User user) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(user);
+		sessionFactory.getCurrentSession().flush();
 		return user;
 	}
 
@@ -64,5 +65,15 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> getAllUsers() {
 		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery(" From User user ").list();
+	}
+
+	@Override
+	public boolean isUserExist(String name) {
+		// TODO Auto-generated method stub
+		User result = getUserByName(name);
+		if (result.getId() == 0) 
+			return false;
+		else 
+			return true;
 	}
 }
