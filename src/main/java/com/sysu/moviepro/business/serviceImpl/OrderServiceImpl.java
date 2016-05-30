@@ -1,12 +1,15 @@
 package com.sysu.moviepro.business.serviceImpl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sysu.moviepro.business.entity.Order;
+import com.sysu.moviepro.business.entity.Ticket;
+import com.sysu.moviepro.business.entity.User;
 import com.sysu.moviepro.business.service.OrderService;
 import com.sysu.moviepro.business.dao.OrderDAO;
 
@@ -20,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderDAO OrderDAO;
-
+	
 	@Override
 	public int createOrder(Order Order) {
 		// TODO Auto-generated method stub
@@ -49,5 +52,21 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> getAllOrders() {
 		// TODO Auto-generated method stub
 		return OrderDAO.getAllOrders();
+	}
+
+	@Override
+	public int createOrderByTickets(User user, Set<Ticket> tickets) {
+		// TODO Auto-generated method stub
+		Order order = new Order();
+		int cost = 0;
+		for (Ticket ticket : tickets) {
+			ticket.setOrder(order);
+			cost += ticket.getPrice();
+		}
+		order.setCost(cost);
+		order.setUser(user);
+		order.setTickets(tickets);
+		int id = OrderDAO.createOrder(order);
+		return id;
 	}
 }

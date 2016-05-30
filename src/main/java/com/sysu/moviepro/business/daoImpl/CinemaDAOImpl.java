@@ -27,6 +27,7 @@ public class CinemaDAOImpl implements CinemaDAO {
 	public Cinema updateCinema(Cinema Cinema) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(Cinema);
+		sessionFactory.getCurrentSession().flush();
 		return Cinema;
 	}
 
@@ -49,9 +50,14 @@ public class CinemaDAOImpl implements CinemaDAO {
 	public Cinema getCinemaByName(String name) {
 		String hql = "select Cinema.id from Cinema Cinema where Cinema.name = '" + name + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		Cinema Cinema = (Cinema) sessionFactory.getCurrentSession().get(Cinema.class, name);
-		return Cinema;
+		List list = query.list();
+		assert(list.size() <= 1);
+		if (list.isEmpty())
+			return new Cinema();
+		else {
+			int id = (Integer)list.get(0);
+			return getCinema(id);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

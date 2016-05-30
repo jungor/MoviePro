@@ -2,7 +2,6 @@ package com.sysu.moviepro.business.daoImpl;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +26,7 @@ public class TicketDAOImpl implements TicketDAO {
 	public Ticket updateTicket(Ticket Ticket) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(Ticket);
+		sessionFactory.getCurrentSession().flush();
 		return Ticket;
 	}
 
@@ -42,15 +42,6 @@ public class TicketDAOImpl implements TicketDAO {
 	public Ticket getTicket(int id) {
 		// TODO Auto-generated method stub
 		Ticket Ticket = (Ticket) sessionFactory.getCurrentSession().get(Ticket.class, id);
-		return Ticket;
-	}
-	
-	@Override
-	public Ticket getTicketByName(String name) {
-		String hql = "select Ticket.id from Ticket Ticket where Ticket.name = '" + name + "'";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		
-		Ticket Ticket = (Ticket) sessionFactory.getCurrentSession().get(Ticket.class, name);
 		return Ticket;
 	}
 	

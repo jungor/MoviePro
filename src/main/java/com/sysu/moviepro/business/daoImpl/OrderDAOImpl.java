@@ -2,7 +2,6 @@ package com.sysu.moviepro.business.daoImpl;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +26,7 @@ public class OrderDAOImpl implements OrderDAO {
 	public Order updateOrder(Order Order) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().update(Order);
+		sessionFactory.getCurrentSession().flush();
 		return Order;
 	}
 

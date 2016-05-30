@@ -55,4 +55,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDAO.getAllUsers();
 	}
+
+	@Override
+	public boolean isUserExist(String name) {
+		// TODO Auto-generated method stub
+		return userDAO.isUserExist(name);
+	}
 }

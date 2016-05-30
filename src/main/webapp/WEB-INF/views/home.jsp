@@ -10,8 +10,6 @@
 <h1>
 	Hello world!  
 </h1>
-
-<p>  The time on the server is ${serverTime}. </p>
 <a href="login">登录</a>
 <a href="register">注册</a>
 </body>

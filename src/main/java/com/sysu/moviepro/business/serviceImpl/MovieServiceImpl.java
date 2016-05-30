@@ -19,40 +19,46 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Autowired
-	private MovieDAO MovieDAO;
+	private MovieDAO movieDAO;
 
 	@Override
 	public int createMovie(Movie Movie) {
 		// TODO Auto-generated method stub
-		return MovieDAO.createMovie(Movie);
+		return movieDAO.createMovie(Movie);
 	}
 
 	@Override
 	public Movie updateMovie(Movie Movie) {
 		// TODO Auto-generated method stub
-		return MovieDAO.updateMovie(Movie);
+		return movieDAO.updateMovie(Movie);
 	}
 
 	@Override
 	public void deleteMovie(int id) {
 		// TODO Auto-generated method stub
-		MovieDAO.deleteMovie(id);
+		movieDAO.deleteMovie(id);
 	}
 
 	@Override
 	public Movie getMovie(int id) {
 		// TODO Auto-generated method stub
-		return MovieDAO.getMovie(id);
+		return movieDAO.getMovie(id);
 	}
 	
 	@Override
 	public Movie getMovieByName(String name) {
-		return MovieDAO.getMovieByName(name);
+		return movieDAO.getMovieByName(name);
 	}
 
 	@Override
 	public List<Movie> getAllMovies() {
 		// TODO Auto-generated method stub
-		return MovieDAO.getAllMovies();
+		return movieDAO.getAllMovies();
+	}
+
+	@Override
+	public List<String> getAllMovieNames() {
+		// TODO Auto-generated method stub
+		return movieDAO.getAllMovieNames();
 	}
 }
