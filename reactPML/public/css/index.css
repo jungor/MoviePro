@@ -1,0 +1,10 @@
+@media screen and (min-width: 992px){
+  #index {
+    width: 800px;
+    margin: auto;
+  }
+}
+
+.hot-movies-item {
+  text-align: center;
+}

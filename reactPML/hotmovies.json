@@ -1,0 +1,50 @@
+[
+    {
+        "mid": 0,
+        "name": "愤怒的小鸟",
+        "post_img_url": "./img/post_angrybird.jpg",
+        "marks": 8.8,
+        "is3d": 1,
+        "isimax": 0
+    },
+    {
+        "mid": 1,
+        "name": "夜孔雀",
+        "post_img_url": "./img/post_yekongque.jpg",
+        "marks": 6.0,
+        "is3d": 0,
+        "isimax": 0
+    },
+    {
+        "mid": 2,
+        "name": "美国队长3",
+        "post_img_url": "./img/post_captain3.jpg",
+        "marks": 8.7,
+        "is3d": 1,
+        "isimax": 1
+    },
+    {
+        "mid": 3,
+        "name": "再见，再也不见",
+        "post_img_url": "./img/post_zaijianzaiyebujian.jpg",
+        "marks": 6.1,
+        "is3d": 0,
+        "isimax": 0
+    },
+    {
+        "mid": 4,
+        "name": "百鸟朝凤",
+        "post_img_url": "./img/post_bainiaochaofeng.jpg",
+        "marks": 9.1,
+        "is3d": 0,
+        "isimax": 0
+    },
+    {
+        "mid": 5,
+        "name": "分歧者3：忠诚世界",
+        "post_img_url": "./img/post_fenqizhe3.jpg",
+        "marks": 7.9,
+        "is3d": 1,
+        "isimax": 0
+    }
+]

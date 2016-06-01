@@ -1,0 +1,75 @@
+main.container {
+	margin: auto;
+}
+
+.hidden {
+	display: none;
+}
+
+.active {
+	background-color: #eee;
+}
+
+.personal-info header,
+.order-list header,
+.edit-page header {
+	margin-bottom: 30px;
+	border-bottom: 1px solid rgba(0,0,0,0.30);
+}
+
+.personal-info h2,
+.order-list h2,
+.edit-page h2 {
+	margin-bottom: 20px;
+}
+
+.info-page ul {
+	overflow: hidden;
+	border: 1px solid rgba(0,0,0,0.20);
+	padding: 10px 20px;
+	background-color: rgba(0,0,0,0.03);
+}
+
+.info-page li {
+	list-style: none;
+	float: left;
+}
+
+.info-page .info-key {
+	font-weight: bold;
+	width: 40%;
+}
+
+.info-page .info-value {
+	width: 50%;
+}
+
+.info-page .info-edit {
+	text-align: center;
+	width: 10%;
+}
+
+.info-page .form-group {
+	overflow: hidden;
+	border: 1px solid rgba(0,0,0,0.20);
+	padding: 10px 20px;
+	background-color: #FFFFFF;
+}
+
+.info-page .form-group a {
+	position: absolute;
+	right: 0;
+}
+
+.info-page .form-group input {
+	margin: 10px 0;
+}
+
+.info-page .form-group button {
+	margin-right: 5px;
+}
+
+.btn-submit,
+.btn-edit {
+	float: right;
+}
