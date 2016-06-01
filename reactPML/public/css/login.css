@@ -1,0 +1,12 @@
+@media screen and (min-width: 992px){
+  #login {
+    width: 800px;
+    margin: auto;
+  }
+}
+
+#login form {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px 0;
+}
